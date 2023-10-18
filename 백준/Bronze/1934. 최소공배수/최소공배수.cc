@@ -1,4 +1,4 @@
-#include <iostream>
+#include <cstdio>
 
 int GCM(const int Hi, const int Lo){
     int H = Hi;
@@ -12,19 +12,17 @@ int GCM(const int Hi, const int Lo){
 }
 
 int main(void){
-    std::ios::sync_with_stdio(0);
-    
-    int T; std::cin>>T;
+    int T; scanf("%d", &T);
     int A, B;
     int tmp;
     for(int i=0; i<T; i++){
-        std::cin>>A>>B;
+        scanf("%d %d", &A, &B);
         if(A<B){
             tmp = A;
             A = B;
             B = tmp;
         }
-        std::cout<<A*(B/GCM(A,B))<<'\n';
+        printf("%d \n",A*(B/GCM(A,B)));
     }
     
     return 0;
