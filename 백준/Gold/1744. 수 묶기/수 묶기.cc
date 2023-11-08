@@ -23,8 +23,28 @@ int main(void){
     
     int buf;
     int cnt = 0;
-    if(low.size()>0){
-        for(auto element : low)
+
+    for(auto element : low)
+    {
+        if(cnt==1){
+            cnt--;
+            ans+= buf*element;
+        }
+        else{
+            cnt++;
+            buf = element;
+        }
+    }
+    
+    if(cnt==1){
+        ans += buf;
+    }
+    
+    // + to > 1
+    cnt = 0;
+    for(auto element : high){
+        //std::cout<<"element:"<<element<<"  ans:"<<ans<<'\n';
+        if(element > 1)
         {
             if(cnt==1){
                 cnt--;
@@ -35,41 +55,20 @@ int main(void){
                 buf = element;
             }
         }
-    }
-    if(cnt==1){
-        ans += buf;
-    }
-    
-    // + to > 1
-    cnt = 0;
-    if(high.size()>0){
-        for(auto element : high){
-            //std::cout<<"element:"<<element<<"  ans:"<<ans<<'\n';
-            if(element > 1)
-            {
-                if(cnt==1){
-                    cnt--;
-                    ans+= buf*element;
-                }
-                else{
-                    cnt++;
-                    buf = element;
-                }
+        else{
+            if(cnt==1){
+                cnt--;
+                ans += buf + element;
             }
             else{
-                if(cnt==1){
-                    cnt--;
-                    ans += buf + element;
-                }
-                else{
-                    ans+=element;
-                }
+                ans+=element;
             }
         }
-        if(cnt==1){
-            ans+=buf;
-        }
     }
+    if(cnt==1){
+        ans+=buf;
+    }
+
     std::cout<< ans;
     return 0;
 }
